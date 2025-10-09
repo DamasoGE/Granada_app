@@ -3,24 +3,26 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  useColorScheme,
   View,
 } from "react-native";
 import React from "react";
 import { Image } from "expo-image";
 import { useFonts } from "expo-font";
+import TEMA from "./themes/Temas";
 
 export default function App() {
-  const COLOR_FONDO = "#121212";
-  const COLOR_TITULO = "#ffdd99";
-  const COLOR_TEXTO_FOTO = "#ffffff";
 
   const [fontsLoaded] = useFonts({
     "BebasNeue-Regular": require("./assets/fonts/BebasNeue-Regular.ttf"),
   });
 
+
+  const tema = useColorScheme()==="light"? TEMA.light:TEMA.dark;
+
   return (
     <View
-      style={[styles.contenedorPrincipal, { backgroundColor: COLOR_FONDO }]}
+      style={[styles.contenedorPrincipal, { backgroundColor: tema.COLOR_FONDO }]}
     >
       <ScrollView>
         <Image
@@ -29,7 +31,7 @@ export default function App() {
           contentFit="cover"
         />
         <View style={styles.contenedorSecundario}>
-          <Text style={[styles.titulo, { color: COLOR_TITULO }]}>
+          <Text style={[styles.titulo, { color: tema.COLOR_TITULO }]}>
             ¿Qué hacer en Granada?
           </Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -62,14 +64,14 @@ export default function App() {
         </View>
 
         <View style={styles.contenedorSecundario}>
-          <Text style={[styles.titulo, { color: COLOR_TITULO }]}>
+          <Text style={[styles.titulo, { color: tema.COLOR_TITULO }]}>
             Las mejores rutas
           </Text>
           <ImageBackground
             source={require("./assets/images/mejores1.jpg")}
             style={styles.fotoRuta}
           >
-            <Text style={[styles.textoFoto, { color: COLOR_TEXTO_FOTO }]}>
+            <Text style={[styles.textoFoto, { color: tema.COLOR_TEXTO_FOTO }]}>
               Albaicín
             </Text>
           </ImageBackground>
@@ -77,7 +79,7 @@ export default function App() {
             source={require("./assets/images/mejores2.jpg")}
             style={styles.fotoRuta}
           >
-            <Text style={[styles.textoFoto, { color: COLOR_TEXTO_FOTO }]}>
+            <Text style={[styles.textoFoto, { color: tema.COLOR_TEXTO_FOTO }]}>
               Sacromonte
             </Text>
           </ImageBackground>
@@ -85,14 +87,14 @@ export default function App() {
             source={require("./assets/images/mejores3.jpg")}
             style={styles.fotoRuta}
           >
-            <Text style={[styles.textoFoto, { color: COLOR_TEXTO_FOTO }]}>
+            <Text style={[styles.textoFoto, { color: tema.COLOR_TEXTO_FOTO }]}>
               El centro
             </Text>
           </ImageBackground>
         </View>
 
         <View style={styles.contenedorSecundario}>
-          <Text style={[styles.titulo, { color: COLOR_TITULO }]}> Los mejores alojamientos </Text>
+          <Text style={[styles.titulo, { color: tema.COLOR_TITULO }]}> Los mejores alojamientos </Text>
           
           <View style={styles.contenedorFotosAlojamiento}>
             <View style={styles.contenedorAlojamiento}>
