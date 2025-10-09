@@ -25,7 +25,8 @@ export default function App() {
       <ScrollView>
         <Image
           source={require("./assets/images/granada_light.jpg")}
-          style={{ width: "100%", height: 250, resizeMode: "cover" }}
+          style={{ width: "100%", height: 250 }}
+          contentFit="cover"
         />
         <View style={styles.contenedorSecundario}>
           <Text style={[styles.titulo, { color: COLOR_TITULO }]}>
@@ -89,6 +90,43 @@ export default function App() {
             </Text>
           </ImageBackground>
         </View>
+
+        <View style={styles.contenedorSecundario}>
+          <Text style={[styles.titulo, { color: COLOR_TITULO }]}> Los mejores alojamientos </Text>
+          
+          <View style={styles.contenedorFotosAlojamiento}>
+            <View style={styles.contenedorAlojamiento}>
+              <Image
+                source={require("./assets/images/alojamiento1.jpg")}
+                style={styles.fotoAlojamiento}
+              />
+            </View>
+            <View style={styles.contenedorAlojamiento}>
+              <Image
+                source={require("./assets/images/alojamiento2.jpg")}
+                style={styles.fotoAlojamiento}
+              />
+            </View>
+          </View>
+        
+                  <View style={styles.contenedorFotosAlojamiento}>
+            <View style={styles.contenedorAlojamiento}>
+              <Image
+                source={require("./assets/images/alojamiento3.jpg")}
+                style={styles.fotoAlojamiento}
+              />
+            </View>
+            <View style={styles.contenedorAlojamiento}>
+              <Image
+                source={require("./assets/images/alojamiento4.jpg")}
+                style={styles.fotoAlojamiento}
+              />
+            </View>
+          </View>
+        
+        </View>
+
+
       </ScrollView>
     </View>
   );
@@ -125,4 +163,20 @@ const styles = StyleSheet.create({
     fontFamily: "BebasNeue-Regular",
     fontSize: 40,
   },
+  contenedorFotosAlojamiento: {
+    flexDirection: "row",
+    gap: 5,
+    justifyContent: "space-between",
+    marginBottom: 15,
+  },
+  fotoAlojamiento: {
+    width: "100%",
+    height: "100%",
+    marginBottom: 10,
+    borderRadius: 10,
+  },
+  contenedorAlojamiento: {
+    width: "49%",
+    aspectRatio: 1,
+  }
 });
