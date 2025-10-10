@@ -1,9 +1,11 @@
-export interface Tema {
+import { ImageSourcePropType } from "react-native";
+
+export type Tema = {
   COLOR_FONDO: string;
   COLOR_TEXTO: string;
   COLOR_TITULO: string;
   COLOR_TEXTO_FOTO: string;
-  logo: any;
+  logo: ImageSourcePropType;
 }
 
 const TEMAS = {

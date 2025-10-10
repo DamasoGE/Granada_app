@@ -3,11 +3,11 @@ import React from "react";
 import FotoRuta from "./FotoRuta";
 import { Tema } from "../themes/Temas";
 
-type Props = {
+type MejoresRutasProps = {
   tema: Tema;
 };
 
-export default function MejoresRutas({tema}: Props) {
+export default function MejoresRutas({tema}: MejoresRutasProps) {
   return (
     <>
       <FotoRuta

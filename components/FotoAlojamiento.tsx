@@ -1,12 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ImageSourcePropType, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Image } from "expo-image";
 
-type Props = {
-    imagen: string;
+type FotoAlojamientoProps = {
+    imagen: ImageSourcePropType;
 };
 
-export default function FotoAlojamiento({imagen}: Props) {
+export default function FotoAlojamiento({imagen}: FotoAlojamientoProps) {
   return (
     <View style={styles.contenedorAlojamiento}>
       <Image

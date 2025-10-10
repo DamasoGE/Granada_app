@@ -2,12 +2,12 @@ import { StyleSheet, Text } from 'react-native'
 import React from 'react'
 import { Tema } from '../themes/Temas';
 
-type Props = {
+type TituloProps = {
     texto: string;
     tema: Tema;
 }
 
-export default function Titulo({texto, tema}: Props) {
+export default function Titulo({texto, tema}: TituloProps) {
     
 
   return (
