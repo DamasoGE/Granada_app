@@ -2,19 +2,21 @@ import { ImageSourcePropType, StyleSheet, Text } from "react-native";
 import React from "react";
 import { ImageBackground } from "expo-image";
 import { Tema } from "../themes/Temas";
+import { useFonts } from "expo-font";
 
 type FotoRutaProps = {
-    texto: string;
-    imagen: ImageSourcePropType;
-    tema: Tema;
-}
+  texto: string;
+  imagen: ImageSourcePropType;
+  tema: Tema;
+};
 
-export default function FotoRuta({texto, imagen, tema}: FotoRutaProps) {
+export default function FotoRuta({ texto, imagen, tema }: FotoRutaProps) {
+  const [fontsLoaded] = useFonts({
+    "BebasNeue-Regular": require("../assets/fonts/BebasNeue-Regular.ttf"),
+  });
+
   return (
-    <ImageBackground
-      source={imagen}
-      style={styles.fotoRuta}
-    >
+    <ImageBackground source={imagen} style={styles.fotoRuta}>
       <Text style={[styles.textoFoto, { color: tema.COLOR_TEXTO_FOTO }]}>
         {texto}
       </Text>
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-    textoFoto: {
+  textoFoto: {
     fontFamily: "BebasNeue-Regular",
     fontSize: 40,
   },

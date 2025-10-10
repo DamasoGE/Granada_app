@@ -1,66 +1,81 @@
 import {
-  ImageBackground,
   ScrollView,
   StyleSheet,
-  Text,
   useColorScheme,
   View,
 } from "react-native";
 import React from "react";
 import { Image } from "expo-image";
-import { useFonts } from "expo-font";
 import TEMAS from "./themes/Temas";
 import Titulo from "./components/Titulo";
 import Carrusel from "./components/Carrusel";
-import FotoRuta from "./components/FotoRuta";
 import MejoresRutas from "./components/MejoresRutas";
-import FotoAlojamiento from "./components/FotoAlojamiento";
+import MejoresAlojamientos from "./components/MejoresAlojamientos";
 
 export default function App() {
 
-  const [fontsLoaded] = useFonts({
-    "BebasNeue-Regular": require("./assets/fonts/BebasNeue-Regular.ttf"),
-  });
 
+  const tema = useColorScheme() === "light" ? TEMAS.light : TEMAS.dark;
 
-  const tema = useColorScheme()==="light"? TEMAS.light:TEMAS.dark;
+  const carrusel = [
+    require("./assets/images/actividad1.jpg"),
+    require("./assets/images/actividad2.jpg"),
+    require("./assets/images/actividad3.jpg"),
+  ];
+
+  const rutas = [
+    { nombre: "Albaicín", imagen: require("./assets/images/mejores1.jpg") },
+    { nombre: "Sacromonte", imagen: require("./assets/images/mejores2.jpg") },
+    { nombre: "El centro", imagen: require("./assets/images/mejores3.jpg") },
+    {
+      nombre: "Parque García Lorca",
+      imagen: require("./assets/images/mejores4.jpg"),
+    },
+  ];
+
+  const alojamientos = [
+    require("./assets/images/alojamiento1.jpg"),
+    require("./assets/images/alojamiento2.jpg"),
+    require("./assets/images/alojamiento3.jpg"),
+    require("./assets/images/alojamiento4.jpg"),
+  ];
 
   return (
     <View
-      style={[styles.contenedorPrincipal, { backgroundColor: tema.COLOR_FONDO }]}
+      style={[
+        styles.contenedorPrincipal,
+        { backgroundColor: tema.COLOR_FONDO },
+      ]}
     >
       <ScrollView>
-        <Image
-          source={require("./assets/images/granada_light.jpg")}
-          style={{ width: "100%", height: 250 }}
-          contentFit="cover"
-        />
+        {useColorScheme() === "light" ? (
+          <Image
+            source={require("./assets/images/granada_light.jpg")}
+            style={{ width: "100%", height: 250 }}
+            contentFit="cover"
+          />
+        ) : (
+          <Image
+            source={require("./assets/images/granada_dark.jpg")}
+            style={{ width: "100%", height: 250 }}
+            contentFit="cover"
+          />
+        )}
+
         <View style={styles.contenedorSecundario}>
           <Titulo texto="¿Qué hacer en Granada?" tema={tema} />
-          <Carrusel />
+          <Carrusel listaImagenes={carrusel} />
         </View>
 
         <View style={styles.contenedorSecundario}>
           <Titulo texto="Las mejores rutas" tema={tema} />
-          <MejoresRutas tema={tema} />
+          <MejoresRutas tema={tema} listaRutas={rutas} />
         </View>
 
         <View style={styles.contenedorSecundario}>
           <Titulo texto="Los mejores alojamientos" tema={tema} />
-          
-          <View style={styles.contenedorFotosAlojamiento}>
-            <FotoAlojamiento imagen={require("./assets/images/alojamiento1.jpg")} />
-            <FotoAlojamiento imagen={require("./assets/images/alojamiento2.jpg")} />
-          </View>
-
-        
-          <View style={styles.contenedorFotosAlojamiento}>
-            <FotoAlojamiento imagen={require("./assets/images/alojamiento3.jpg")} />
-            <FotoAlojamiento imagen={require("./assets/images/alojamiento4.jpg")} />
-          </View>
-        
+          <MejoresAlojamientos listaImagenes={alojamientos} />
         </View>
-
       </ScrollView>
     </View>
   );
@@ -74,21 +89,4 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     padding: 5,
   },
-
-  contenedorFotosAlojamiento: {
-    flexDirection: "row",
-    gap: 5,
-    justifyContent: "space-between",
-    marginBottom: 15,
-  },
-  fotoAlojamiento: {
-    width: "100%",
-    height: "100%",
-    marginBottom: 10,
-    borderRadius: 10,
-  },
-  contenedorAlojamiento: {
-    width: "49%",
-    aspectRatio: 1,
-  }
 });

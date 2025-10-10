@@ -1,35 +1,24 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import { Image } from "expo-image";
+import { ImageSourcePropType } from "react-native";
 
-export default function Carrusel() {
+type Carrusel = {
+  listaImagenes: Array<ImageSourcePropType>
+};
+
+export default function Carrusel({listaImagenes}: Carrusel) {
   return (
-    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+    <ScrollView horizontal={true}>
+    {listaImagenes.map((imagen, index) => (
       <Image
-        source={require("../assets/images/actividad1.jpg")}
+        key={index}
+        source={imagen}
         style={styles.fotoCarrusel}
         contentFit="contain"
       />
-      <Image
-        source={require("../assets/images/actividad2.jpg")}
-        style={styles.fotoCarrusel}
-        contentFit="contain"
-      />
-      <Image
-        source={require("../assets/images/actividad3.jpg")}
-        style={styles.fotoCarrusel}
-        contentFit="contain"
-      />
-      <Image
-        source={require("../assets/images/actividad4.jpg")}
-        style={styles.fotoCarrusel}
-        contentFit="contain"
-      />
-      <Image
-        source={require("../assets/images/actividad5.jpg")}
-        style={styles.fotoCarrusel}
-        contentFit="contain"
-      />
+    ))}
+    
     </ScrollView>
   );
 }
