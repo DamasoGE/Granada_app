@@ -9,7 +9,12 @@ import {
 import React from "react";
 import { Image } from "expo-image";
 import { useFonts } from "expo-font";
-import TEMA from "./themes/Temas";
+import TEMAS from "./themes/Temas";
+import Titulo from "./components/Titulo";
+import Carrusel from "./components/Carrusel";
+import FotoRuta from "./components/FotoRuta";
+import MejoresRutas from "./components/MejoresRutas";
+import FotoAlojamiento from "./components/FotoAlojamiento";
 
 export default function App() {
 
@@ -18,7 +23,7 @@ export default function App() {
   });
 
 
-  const tema = useColorScheme()==="light"? TEMA.light:TEMA.dark;
+  const tema = useColorScheme()==="light"? TEMAS.light:TEMAS.dark;
 
   return (
     <View
@@ -31,103 +36,30 @@ export default function App() {
           contentFit="cover"
         />
         <View style={styles.contenedorSecundario}>
-          <Text style={[styles.titulo, { color: tema.COLOR_TITULO }]}>
-            ¿Qué hacer en Granada?
-          </Text>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <Image
-              source={require("./assets/images/actividad1.jpg")}
-              style={styles.fotoCarrusel}
-              contentFit="contain"
-            />
-            <Image
-              source={require("./assets/images/actividad2.jpg")}
-              style={styles.fotoCarrusel}
-              contentFit="contain"
-            />
-            <Image
-              source={require("./assets/images/actividad3.jpg")}
-              style={styles.fotoCarrusel}
-              contentFit="contain"
-            />
-            <Image
-              source={require("./assets/images/actividad4.jpg")}
-              style={styles.fotoCarrusel}
-              contentFit="contain"
-            />
-            <Image
-              source={require("./assets/images/actividad5.jpg")}
-              style={styles.fotoCarrusel}
-              contentFit="contain"
-            />
-          </ScrollView>
+          <Titulo texto="¿Qué hacer en Granada?" tema={tema} />
+          <Carrusel />
         </View>
 
         <View style={styles.contenedorSecundario}>
-          <Text style={[styles.titulo, { color: tema.COLOR_TITULO }]}>
-            Las mejores rutas
-          </Text>
-          <ImageBackground
-            source={require("./assets/images/mejores1.jpg")}
-            style={styles.fotoRuta}
-          >
-            <Text style={[styles.textoFoto, { color: tema.COLOR_TEXTO_FOTO }]}>
-              Albaicín
-            </Text>
-          </ImageBackground>
-          <ImageBackground
-            source={require("./assets/images/mejores2.jpg")}
-            style={styles.fotoRuta}
-          >
-            <Text style={[styles.textoFoto, { color: tema.COLOR_TEXTO_FOTO }]}>
-              Sacromonte
-            </Text>
-          </ImageBackground>
-          <ImageBackground
-            source={require("./assets/images/mejores3.jpg")}
-            style={styles.fotoRuta}
-          >
-            <Text style={[styles.textoFoto, { color: tema.COLOR_TEXTO_FOTO }]}>
-              El centro
-            </Text>
-          </ImageBackground>
+          <Titulo texto="Las mejores rutas" tema={tema} />
+          <MejoresRutas tema={tema} />
         </View>
 
         <View style={styles.contenedorSecundario}>
-          <Text style={[styles.titulo, { color: tema.COLOR_TITULO }]}> Los mejores alojamientos </Text>
+          <Titulo texto="Los mejores alojamientos" tema={tema} />
           
           <View style={styles.contenedorFotosAlojamiento}>
-            <View style={styles.contenedorAlojamiento}>
-              <Image
-                source={require("./assets/images/alojamiento1.jpg")}
-                style={styles.fotoAlojamiento}
-              />
-            </View>
-            <View style={styles.contenedorAlojamiento}>
-              <Image
-                source={require("./assets/images/alojamiento2.jpg")}
-                style={styles.fotoAlojamiento}
-              />
-            </View>
+            <FotoAlojamiento imagen={require("./assets/images/alojamiento1.jpg")} />
+            <FotoAlojamiento imagen={require("./assets/images/alojamiento2.jpg")} />
           </View>
+
         
-                  <View style={styles.contenedorFotosAlojamiento}>
-            <View style={styles.contenedorAlojamiento}>
-              <Image
-                source={require("./assets/images/alojamiento3.jpg")}
-                style={styles.fotoAlojamiento}
-              />
-            </View>
-            <View style={styles.contenedorAlojamiento}>
-              <Image
-                source={require("./assets/images/alojamiento4.jpg")}
-                style={styles.fotoAlojamiento}
-              />
-            </View>
+          <View style={styles.contenedorFotosAlojamiento}>
+            <FotoAlojamiento imagen={require("./assets/images/alojamiento3.jpg")} />
+            <FotoAlojamiento imagen={require("./assets/images/alojamiento4.jpg")} />
           </View>
         
         </View>
-
 
       </ScrollView>
     </View>
@@ -142,29 +74,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     padding: 5,
   },
-  titulo: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginVertical: 20,
-  },
-  fotoCarrusel: {
-    width: 250,
-    height: 300,
-    marginRight: 10,
-    borderRadius: 10,
-  },
-  fotoRuta: {
-    width: "100%",
-    height: 200,
-    marginVertical: 5,
-    justifyContent: "center",
-    alignItems: "center",
-  },
 
-  textoFoto: {
-    fontFamily: "BebasNeue-Regular",
-    fontSize: 40,
-  },
   contenedorFotosAlojamiento: {
     flexDirection: "row",
     gap: 5,

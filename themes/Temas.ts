@@ -1,3 +1,11 @@
+export interface Tema {
+  COLOR_FONDO: string;
+  COLOR_TEXTO: string;
+  COLOR_TITULO: string;
+  COLOR_TEXTO_FOTO: string;
+  logo: any;
+}
+
 const TEMAS = {
   dark: {
     COLOR_FONDO: "#121212",
